@@ -9,7 +9,7 @@
     try { localStorage.setItem('theme', t); } catch (e) {}
     if (toggle) toggle.setAttribute('aria-pressed', t === 'light' ? 'true' : 'false');
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', t === 'light' ? '#f7f8fc' : '#0b1020');
+    if (meta) meta.setAttribute('content', t === 'light' ? '#f5faf6' : '#07130d');
   }
   if (toggle) {
     setTheme(root.getAttribute('data-theme') || 'dark');

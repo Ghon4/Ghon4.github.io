@@ -1,16 +1,16 @@
 /* Mohamed Ghoniem — portfolio. Plain CSS, mobile first. */
 :root{
-  --bg:#0b1020; --bg-2:#111833; --surface:#141c38; --surface-2:#1a2347;
-  --border:#26315c; --text:#e8ecf8; --muted:#a6b0cf; --accent:#5cc8ff; --accent-2:#7c8cff;
-  --accent-ink:#06121f; --chip:#1d2750; --glow:rgba(92,200,255,.16); --shadow:0 10px 30px rgba(0,0,0,.35);
+  --bg:#07130d; --bg-2:#0c1c14; --surface:#10241a; --surface-2:#152e21;
+  --border:#22442f; --text:#e7f5ec; --muted:#a3c2ae; --accent:#4ade80; --accent-2:#2dd4bf;
+  --accent-ink:#04140a; --chip:#183424; --glow:rgba(74,222,128,.16); --shadow:0 10px 30px rgba(0,0,0,.35);
   --radius:16px; --maxw:1120px;
   --font:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
   color-scheme:dark;
 }
 :root[data-theme="light"]{
-  --bg:#f7f8fc; --bg-2:#eef1f9; --surface:#ffffff; --surface-2:#f2f4fb;
-  --border:#d9deee; --text:#121730; --muted:#4a5371; --accent:#0a62c2; --accent-2:#5146d9;
-  --accent-ink:#ffffff; --chip:#eaf0fb; --glow:rgba(10,98,194,.10); --shadow:0 10px 30px rgba(18,23,48,.08);
+  --bg:#f5faf6; --bg-2:#eaf4ed; --surface:#ffffff; --surface-2:#eef7f1;
+  --border:#cfe3d6; --text:#0f2418; --muted:#46604f; --accent:#15803d; --accent-2:#0f766e;
+  --accent-ink:#ffffff; --chip:#e3f2e8; --glow:rgba(21,128,61,.10); --shadow:0 10px 30px rgba(15,36,24,.08);
   color-scheme:light;
 }
 *,*::before,*::after{box-sizing:border-box}
@@ -37,7 +37,7 @@ ul{padding-left:1.2em;margin:0}
 .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--text);text-decoration:none}
 .brand:hover{text-decoration:none}
 .brand-mark{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:14px;font-weight:800;
-  background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#06121f}
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#04140a}
 .nav-links{display:none;list-style:none;margin:0;padding:0;gap:4px}
 .nav-links a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:8px;font-size:15px}
 .nav-links a:hover,.nav-links a.active{color:var(--text);background:var(--surface)}
@@ -113,7 +113,7 @@ section{padding:72px 0}
 .card[hidden]{display:none}
 .card-head{display:flex;gap:14px;align-items:center}
 .app-icon{width:60px;height:60px;border-radius:14px;flex:none;object-fit:cover;border:1px solid var(--border);background:var(--surface-2)}
-.monogram{display:grid;place-items:center;font-weight:800;font-size:20px;color:#06121f;background:linear-gradient(135deg,var(--accent),var(--accent-2))}
+.monogram{display:grid;place-items:center;font-weight:800;font-size:20px;color:#04140a;background:linear-gradient(135deg,var(--accent),var(--accent-2))}
 .card h3{font-size:1.15rem;margin:0}
 .card .company{color:var(--muted);font-size:14px;margin:2px 0 0}
 .card .tagline{font-weight:600;font-size:15px;margin:0}
