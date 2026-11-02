@@ -87,9 +87,15 @@ section{padding:72px 0}
 .dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.6);animation:pulse 2.2s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.55)}70%{box-shadow:0 0 0 9px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
 .cta-row{display:flex;flex-wrap:wrap;gap:10px}
+/* Toptal badge */
+.hero-layout{display:grid;gap:32px;align-items:center}
+.toptal-badge{justify-self:start;line-height:normal}
+.toptal-badge #r,.toptal-badge #r *,.toptal-badge #r *::before,.toptal-badge #r *::after{box-sizing:content-box}
 @media (min-width:900px){
   .hero{padding:88px 0 96px;background:radial-gradient(780px circle at 12% -10%,var(--glow),transparent 68%)}
   .hero .lead{max-width:46rem}
+  .hero-layout{grid-template-columns:minmax(0,1fr) auto;column-gap:48px}
+  .toptal-badge{justify-self:end}
 }
 
 /* About */
