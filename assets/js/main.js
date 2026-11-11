@@ -67,7 +67,7 @@
     btn.addEventListener('click', function () {
       var f = btn.getAttribute('data-filter');
       filters.forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
-      document.querySelectorAll('.projects .card').forEach(function (card) {
+      document.querySelectorAll('#projects .card').forEach(function (card) {
         var cats = (card.getAttribute('data-cats') || '').split(' ');
         var show = f === 'all' || cats.indexOf(f) !== -1;
         card.parentElement.hidden = !show;
