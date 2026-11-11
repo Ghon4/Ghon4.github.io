@@ -28,8 +28,8 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="assets/css/style.css">
+<script>(function(){var r=document.documentElement;r.classList.add('js');r.classList.remove('no-js');try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';r.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/css/style.css?v=3">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Mohamed Ghoniem", "jobTitle": "Senior Mobile Engineer (Flutter)", "url": "https://ghon4.github.io/", "email": "mailto:mohamed.maher.ghoniem@gmail.com", "telephone": "+201159480900", "address": {"@type": "PostalAddress", "addressLocality": "Cairo", "addressCountry": "EG"}, "alumniOf": {"@type": "CollegeOrUniversity", "name": "Menoufia University"}, "knowsLanguage": ["Arabic", "English"], "knowsAbout": ["Flutter", "Dart", "iOS", "Android", "BLoC", "Riverpod", "Clean Architecture", "CI/CD", "Mobile app development"], "sameAs": ["https://www.linkedin.com/in/mohamed-ghoniem/", "https://github.com/Ghon4"], "worksFor": {"@type": "Organization", "name": "NTG"}}</script>
 </head>
 <body>
@@ -85,10 +85,10 @@
       <figure class="shot-card s-right"><img src="assets/shots/digital-hockey.webp" width="900" height="1950" alt=""></figure>
     </div>
     <ul class="stats-strip" aria-label="Key numbers">
-      <li><strong>7+</strong><span>years of experience</span></li>
-      <li><strong>10+</strong><span>production iOS &amp; Android apps</span></li>
-      <li><strong>1.1M+</strong><span>downloads, collectively</span></li>
-      <li><strong>20K+</strong><span>ratings averaging 4.3+</span></li>
+      <li class="reveal"><strong>7+</strong><span>years of experience</span></li>
+      <li class="reveal"><strong>10+</strong><span>production iOS &amp; Android apps</span></li>
+      <li class="reveal"><strong>1.1M+</strong><span>downloads, collectively</span></li>
+      <li class="reveal"><strong>20K+</strong><span>ratings averaging 4.3+</span></li>
     </ul>
   </div>
 </section>
@@ -98,11 +98,11 @@
     <div class="section-head reveal"><span class="eyebrow">About</span><h2 id="about-title">Shipping mobile products people use</h2></div>
     <div class="about-grid">
       <div class="about-text reveal"><p>Senior Mobile Engineer with 7+ years building and shipping 10+ production iOS and Android applications across fintech, insurance, sports, and e-commerce — collectively 1.1M+ downloads and 20K+ ratings averaging 4.3+. Arabic-native with direct Gulf-market delivery (Al Rajhi Takaful) and Arabic RTL localization.</p><p>Specialized in Flutter, Dart, Clean Architecture, BLoC state management, secure financial flows, and CI/CD automation (CodeMagic, GitHub Actions, Fastlane). Proven record of hands-on technical leadership: leading mobile teams, mentoring engineers to senior, shortening release cycles, and raising app-quality metrics for products used by hundreds of thousands of customers.</p></div>
-      <ul class="stats reveal" aria-label="Key numbers">
-        <li class="stat"><strong>7+</strong><span>years of experience</span></li>
-        <li class="stat"><strong>10+</strong><span>production iOS &amp; Android apps</span></li>
-        <li class="stat"><strong>1.1M+</strong><span>downloads, collectively</span></li>
-        <li class="stat"><strong>20K+</strong><span>ratings averaging 4.3+</span></li>
+      <ul class="stats" aria-label="Key numbers">
+        <li class="stat reveal"><strong>7+</strong><span>years of experience</span></li>
+        <li class="stat reveal"><strong>10+</strong><span>production iOS &amp; Android apps</span></li>
+        <li class="stat reveal"><strong>1.1M+</strong><span>downloads, collectively</span></li>
+        <li class="stat reveal"><strong>20K+</strong><span>ratings averaging 4.3+</span></li>
       </ul>
     </div>
   </div>
@@ -329,6 +329,6 @@
     <p><a href="#top">Back to top ↑</a></p>
   </div>
 </footer>
-<script src="assets/js/main.js" defer></script>
+<script src="assets/js/main.js?v=3" defer></script>
 </body>
 </html>
