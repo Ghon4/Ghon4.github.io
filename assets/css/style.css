@@ -1046,7 +1046,8 @@ html.intro-done .site-intro{display:none}
 
 /* Case study pages — Dennis picture-beside-title + Motionsites sticky/mask/parallax */
 .case-page .site-header{position:sticky;z-index:40}
-.case{padding-bottom:0;overflow-x:clip}
+/* Do not set overflow on .case — any non-visible overflow makes sticky pins stick to a non-scrolling ancestor */
+.case{padding-bottom:0}
 .case-crumb{margin:0 0 18px;font-size:.9rem;color:var(--muted)}
 .case-crumb a{color:var(--muted);text-decoration:none}
 .case-crumb a:hover{color:var(--accent)}
@@ -1070,7 +1071,7 @@ html.intro-done .site-intro{display:none}
   position:sticky;top:0;min-height:100vh;min-height:100dvh;
   display:grid;align-items:center;gap:28px;
   padding:108px clamp(16px,4vw,48px) 48px;
-  max-width:1200px;margin:0 auto;overflow-x:clip;
+  max-width:1200px;margin:0 auto;
   --stage-p:0;
   --stage-enter:0;
   --mx:0;--my:0;
