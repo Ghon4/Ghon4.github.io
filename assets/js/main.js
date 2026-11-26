@@ -63,11 +63,11 @@
     }
     root.classList.remove('intro-done');
     root.classList.add('intro-pending', 'intro-playing');
-    // Hold the brand beat, then exit
+    // Intro blur-rise / mask-line choreography (~1.5s land) + hold, then wipe
     window.setTimeout(function () {
       root.classList.add('intro-exit');
-      window.setTimeout(finishIntro, 820);
-    }, 2100);
+      window.setTimeout(finishIntro, 920);
+    }, 3200);
   }
 
   if (document.readyState === 'loading') {
@@ -312,56 +312,32 @@
     });
   }
 
-  // ===== Work list: expand + cursor-follow float preview =====
+  // ===== Work list: designed float + View circle + case links =====
   var workStage = document.querySelector('.work-stage');
   var workList = document.getElementById('work-list');
   var workFloat = document.getElementById('work-float');
+  var workView = document.getElementById('work-view');
   var workFloatImg = workFloat ? workFloat.querySelector('img') : null;
 
   if (workStage && !finePointer) {
     workStage.classList.add('is-touch');
   }
 
-  function closeAllWork(except) {
-    document.querySelectorAll('.work-item.is-open').forEach(function (item) {
-      if (except && item === except) return;
-      item.classList.remove('is-open');
-      var btn = item.querySelector('.work-row');
-      var panel = item.querySelector('.work-panel');
-      if (btn) btn.setAttribute('aria-expanded', 'false');
-      if (panel) panel.hidden = true;
-    });
-  }
-
-  if (workList) {
-    workList.querySelectorAll('.work-row').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var item = btn.closest('.work-item');
-        if (!item) return;
-        var open = !item.classList.contains('is-open');
-        closeAllWork(open ? item : null);
-        item.classList.toggle('is-open', open);
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        var panel = item.querySelector('.work-panel');
-        if (panel) panel.hidden = !open;
-      });
-    });
-  }
-
-  // Floating preview (desktop fine pointer only)
-  if (workStage && workList && workFloat && workFloatImg && finePointer) {
+  if (workStage && workList && workFloat && workFloatImg && workView && finePointer) {
     var targetX = 0;
     var targetY = 0;
-    var curX = 0;
-    var curY = 0;
+    var floatX = 0;
+    var floatY = 0;
+    var viewX = 0;
+    var viewY = 0;
     var floatOn = false;
     var rafId = 0;
-    var LERP = 0.16;
+    var LERP_FLOAT = 0.11; // slower lag on designed card
+    var LERP_VIEW = 0.22;  // snappier View circle
 
-    function setFloatPos(x, y) {
-      var pad = 24;
-      var fw = workFloat.offsetWidth || 240;
-      var fh = workFloat.offsetHeight || 360;
+    function clampPair(x, y, el, pad) {
+      var fw = el.offsetWidth || 120;
+      var fh = el.offsetHeight || 120;
       var maxX = (window.innerWidth || 0) - fw / 2 - pad;
       var minX = fw / 2 + pad;
       var maxY = (window.innerHeight || 0) - fh / 2 - pad;
@@ -370,19 +346,30 @@
       if (x < minX) x = minX;
       if (y > maxY) y = maxY;
       if (y < minY) y = minY;
-      workFloat.style.left = x + 'px';
-      workFloat.style.top = y + 'px';
+      return { x: x, y: y };
     }
 
     function tick() {
-      curX += (targetX - curX) * LERP;
-      curY += (targetY - curY) * LERP;
-      setFloatPos(curX, curY);
-      if (floatOn || Math.abs(targetX - curX) > 0.4 || Math.abs(targetY - curY) > 0.4) {
+      floatX += (targetX - floatX) * LERP_FLOAT;
+      floatY += (targetY - floatY) * LERP_FLOAT;
+      viewX += (targetX - viewX) * LERP_VIEW;
+      viewY += (targetY - viewY) * LERP_VIEW;
+      var fp = clampPair(floatX + 18, floatY - 10, workFloat, 24);
+      var vp = clampPair(viewX, viewY, workView, 16);
+      workFloat.style.left = fp.x + 'px';
+      workFloat.style.top = fp.y + 'px';
+      workView.style.left = vp.x + 'px';
+      workView.style.top = vp.y + 'px';
+      if (
+        floatOn ||
+        Math.abs(targetX - floatX) > 0.4 ||
+        Math.abs(targetY - floatY) > 0.4 ||
+        Math.abs(targetX - viewX) > 0.4 ||
+        Math.abs(targetY - viewY) > 0.4
+      ) {
         rafId = requestAnimationFrame(tick);
       } else {
         rafId = 0;
-        setFloatPos(targetX, targetY);
       }
     }
 
@@ -390,8 +377,17 @@
       if (!rafId) rafId = requestAnimationFrame(tick);
     }
 
+    function bindHref(el, href) {
+      if (!href) return;
+      el.setAttribute('href', href);
+      el.setAttribute('aria-label', 'View project');
+      el.removeAttribute('tabindex');
+    }
+
     function showFloat(item, e) {
       var shot = item.getAttribute('data-shot');
+      var color = item.getAttribute('data-color') || '#0a2a1c';
+      var href = item.getAttribute('data-href') || (item.querySelector('.work-row') || {}).getAttribute('href') || '';
       if (!shot) {
         hideFloat();
         return;
@@ -399,20 +395,26 @@
       if (workFloatImg.getAttribute('src') !== shot) {
         workFloatImg.setAttribute('src', shot);
       }
+      workFloat.style.setProperty('--float-color', color);
+      bindHref(workFloat, href);
+      bindHref(workView, href);
       workStage.classList.add('is-hovering');
       document.querySelectorAll('.work-item.is-active').forEach(function (el) {
         el.classList.remove('is-active');
       });
       item.classList.add('is-active');
-      // Bias preview slightly right/up so the title stays readable
-      targetX = e.clientX + 72;
-      targetY = e.clientY - 12;
+      targetX = e.clientX;
+      targetY = e.clientY;
       if (!floatOn) {
-        curX = targetX;
-        curY = targetY;
-        setFloatPos(curX, curY);
+        floatX = targetX;
+        floatY = targetY;
+        viewX = targetX;
+        viewY = targetY;
         floatOn = true;
         workFloat.classList.add('is-on');
+        workView.classList.add('is-on');
+        workFloat.setAttribute('aria-hidden', 'false');
+        workView.setAttribute('aria-hidden', 'false');
       }
       ensureTick();
     }
@@ -420,32 +422,78 @@
     function hideFloat() {
       floatOn = false;
       workFloat.classList.remove('is-on');
+      workView.classList.remove('is-on');
+      workFloat.setAttribute('aria-hidden', 'true');
+      workView.setAttribute('aria-hidden', 'true');
+      workFloat.setAttribute('tabindex', '-1');
+      workView.setAttribute('tabindex', '-1');
+      workFloat.setAttribute('href', '#');
+      workView.setAttribute('href', '#');
       workStage.classList.remove('is-hovering');
       document.querySelectorAll('.work-item.is-active').forEach(function (el) {
         el.classList.remove('is-active');
       });
     }
 
+    function overPreview(to) {
+      return to && (workList.contains(to) || workFloat.contains(to) || workView.contains(to));
+    }
+
     workList.querySelectorAll('.work-item').forEach(function (item) {
       var row = item.querySelector('.work-row');
       if (!row) return;
-      row.addEventListener('mouseenter', function (e) {
-        showFloat(item, e);
-      });
+      row.addEventListener('mouseenter', function (e) { showFloat(item, e); });
       row.addEventListener('mousemove', function (e) {
         if (!item.getAttribute('data-shot')) return;
-        targetX = e.clientX + 72;
-        targetY = e.clientY - 12;
+        targetX = e.clientX;
+        targetY = e.clientY;
         ensureTick();
       });
       row.addEventListener('mouseleave', function (e) {
-        var to = e.relatedTarget;
-        if (to && workList.contains(to)) return;
+        if (overPreview(e.relatedTarget)) return;
         hideFloat();
       });
     });
 
-    workList.addEventListener('mouseleave', hideFloat);
+    [workFloat, workView].forEach(function (el) {
+      el.addEventListener('mousemove', function (e) {
+        targetX = e.clientX;
+        targetY = e.clientY;
+        ensureTick();
+      });
+      el.addEventListener('mouseleave', function (e) {
+        if (overPreview(e.relatedTarget)) return;
+        hideFloat();
+      });
+    });
+
+    workList.addEventListener('mouseleave', function (e) {
+      if (overPreview(e.relatedTarget)) return;
+      hideFloat();
+    });
+  }
+
+  // Case pages: next-project wash only (imagery reuses home .hero-shots float/tilt/enter)
+  var caseNext = document.querySelector('.case-next');
+  if (caseNext) {
+    var caseTick = false;
+    function updateCaseNext() {
+      caseTick = false;
+      var nrect = caseNext.getBoundingClientRect();
+      var nvh = window.innerHeight || 1;
+      var np = 1 - Math.min(1, Math.max(0, nrect.top / nvh));
+      caseNext.style.setProperty('--next-progress', np.toFixed(3));
+      if (nrect.top < nvh * 0.85) caseNext.classList.add('is-in');
+    }
+    function requestCaseTick() {
+      if (caseTick) return;
+      caseTick = true;
+      requestAnimationFrame(updateCaseNext);
+    }
+    if (reduceMotion || revealAll) caseNext.classList.add('is-in');
+    window.addEventListener('scroll', requestCaseTick, { passive: true });
+    window.addEventListener('resize', requestCaseTick);
+    requestCaseTick();
   }
 
   var y = document.getElementById('year');

@@ -1,0 +1,119 @@
+{
+  "al-rajhi-takaful": {
+    "source": "app-store",
+    "id": 1511689440,
+    "files": [
+      "assets/shots/store/al-rajhi-takaful/1.webp",
+      "assets/shots/store/al-rajhi-takaful/2.webp",
+      "assets/shots/store/al-rajhi-takaful/3.webp",
+      "assets/shots/store/al-rajhi-takaful/4.webp",
+      "assets/shots/store/al-rajhi-takaful/5.webp"
+    ],
+    "name": "\u062a\u0643\u0627\u0641\u0644 \u0627\u0644\u0631\u0627\u062c\u062d\u064a|Al Rajhi Takaful",
+    "float": "assets/shots/float/al-rajhi-takaful.webp"
+  },
+  "ingame": {
+    "source": "app-store",
+    "id": 6497486635,
+    "files": [
+      "assets/shots/store/ingame/1.webp",
+      "assets/shots/store/ingame/2.webp",
+      "assets/shots/store/ingame/3.webp",
+      "assets/shots/store/ingame/4.webp",
+      "assets/shots/store/ingame/5.webp"
+    ],
+    "name": "ingame Sports",
+    "float": "assets/shots/float/ingame.webp"
+  },
+  "digital-hockey": {
+    "source": "app-store",
+    "id": 6463205087,
+    "files": [
+      "assets/shots/store/digital-hockey/1.webp",
+      "assets/shots/store/digital-hockey/2.webp",
+      "assets/shots/store/digital-hockey/3.webp",
+      "assets/shots/store/digital-hockey/4.webp",
+      "assets/shots/store/digital-hockey/5.webp"
+    ],
+    "name": "HCAP Digital Hockey",
+    "float": "assets/shots/float/digital-hockey.webp"
+  },
+  "qoodz": {
+    "source": "app-store",
+    "id": 1661863581,
+    "files": [
+      "assets/shots/store/qoodz/1.webp",
+      "assets/shots/store/qoodz/2.webp",
+      "assets/shots/store/qoodz/3.webp",
+      "assets/shots/store/qoodz/4.webp",
+      "assets/shots/store/qoodz/5.webp"
+    ],
+    "name": "Qoodz",
+    "float": "assets/shots/float/qoodz.webp"
+  },
+  "qoodz-manager": {
+    "source": "app-store",
+    "id": 1662103779,
+    "files": [
+      "assets/shots/store/qoodz-manager/1.webp",
+      "assets/shots/store/qoodz-manager/2.webp",
+      "assets/shots/store/qoodz-manager/3.webp",
+      "assets/shots/store/qoodz-manager/4.webp",
+      "assets/shots/store/qoodz-manager/5.webp"
+    ],
+    "name": "Qoodz Manager",
+    "float": "assets/shots/float/qoodz-manager.webp"
+  },
+  "dexef-bills": {
+    "source": "app-store",
+    "id": 1618652580,
+    "files": [
+      "assets/shots/store/dexef-bills/1.webp",
+      "assets/shots/store/dexef-bills/2.webp",
+      "assets/shots/store/dexef-bills/3.webp",
+      "assets/shots/store/dexef-bills/4.webp",
+      "assets/shots/store/dexef-bills/5.webp"
+    ],
+    "name": "Dexef POS",
+    "float": "assets/shots/float/dexef-bills.webp"
+  },
+  "mahallat-jo": {
+    "source": "app-store",
+    "id": 6449230776,
+    "files": [
+      "assets/shots/store/mahallat-jo/1.webp",
+      "assets/shots/store/mahallat-jo/2.webp",
+      "assets/shots/store/mahallat-jo/3.webp",
+      "assets/shots/store/mahallat-jo/4.webp",
+      "assets/shots/store/mahallat-jo/5.webp"
+    ],
+    "name": "MahallatJO",
+    "float": "assets/shots/float/mahallat-jo.webp"
+  },
+  "farmer-app": {
+    "source": "play-store",
+    "package": "com.mozare3.farmer",
+    "files": [
+      "assets/shots/store/farmer-app/1.webp",
+      "assets/shots/store/farmer-app/3.webp",
+      "assets/shots/store/farmer-app/4.webp",
+      "assets/shots/store/farmer-app/5.webp"
+    ],
+    "float": "assets/shots/float/farmer-app.webp"
+  },
+  "mozare3-partners": {
+    "source": "play-store",
+    "package": "com.partners.mozare3",
+    "files": [
+      "assets/shots/store/mozare3-partners/3.webp",
+      "assets/shots/store/mozare3-partners/4.webp",
+      "assets/shots/store/mozare3-partners/5.webp"
+    ],
+    "float": "assets/shots/float/mozare3-partners.webp"
+  },
+  "jks-portal": {
+    "source": "none",
+    "files": [],
+    "gap": "No longer on stores; monogram only"
+  }
+}
