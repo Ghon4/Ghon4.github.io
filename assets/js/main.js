@@ -20,12 +20,27 @@
     try { localStorage.setItem('theme', t); } catch (e) {}
     if (toggle) toggle.setAttribute('aria-pressed', t === 'light' ? 'true' : 'false');
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', t === 'light' ? '#f5faf6' : '#07130d');
+    if (meta) meta.setAttribute('content', t === 'light' ? '#eef6f0' : '#07130d');
   }
   if (toggle) {
     setTheme(root.getAttribute('data-theme') || 'dark');
     toggle.addEventListener('click', function () {
       setTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+    });
+  }
+
+  // Hero entrance (presence, once)
+  var heroEnters = document.querySelectorAll('.hero-enter');
+  function showHeroEnters() {
+    heroEnters.forEach(function (el) { el.classList.add('is-in'); });
+  }
+  if (!heroEnters.length) {
+    /* no-op */
+  } else if (reduceMotion || revealAll) {
+    showHeroEnters();
+  } else {
+    requestAnimationFrame(function () {
+      requestAnimationFrame(showHeroEnters);
     });
   }
 
