@@ -32,7 +32,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
 <script>(function(){var r=document.documentElement;r.classList.add('js');r.classList.remove('no-js');try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';r.setAttribute('data-theme',t);}catch(e){}try{var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;var skip=/(?:^|[?&])reveal=all(?:&|$)/.test(location.search);if(!rm&&!skip)r.classList.add('intro-pending');else r.classList.add('intro-done');}catch(e){r.classList.add('intro-done');}})();</script>
-<link rel="stylesheet" href="assets/css/style.css?v=6">
+<link rel="stylesheet" href="assets/css/style.css?v=7">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Mohamed Ghoniem", "jobTitle": "Senior Mobile Engineer (Flutter)", "url": "https://ghon4.github.io/", "email": "mailto:mohamed.maher.ghoniem@gmail.com", "telephone": "+201159480900", "address": {"@type": "PostalAddress", "addressLocality": "Cairo", "addressCountry": "EG"}, "alumniOf": {"@type": "CollegeOrUniversity", "name": "Menoufia University"}, "knowsLanguage": ["Arabic", "English"], "knowsAbout": ["Flutter", "Dart", "iOS", "Android", "BLoC", "Riverpod", "Clean Architecture", "CI/CD", "Mobile app development"], "sameAs": ["https://www.linkedin.com/in/mohamed-ghoniem/", "https://github.com/Ghon4"], "worksFor": {"@type": "Organization", "name": "NTG"}}</script>
 </head>
 <body>
@@ -132,7 +132,7 @@
 <section id="projects" aria-labelledby="projects-title">
   <div class="container">
     <div class="section-head reveal"><span class="eyebrow">Projects</span><h2 id="projects-title">Selected apps</h2>
-      <p>Production apps I have built or led. Hover a title to preview the store art; expand a row for results, stack, and store links.</p></div>
+      <p>Production apps I have built or led. Hover a title to preview the store art; click a row (or the preview) to open the case study.</p></div>
     <div class="filters reveal" role="group" aria-label="Filter projects by platform">
       <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
       <button class="filter" type="button" data-filter="ios" aria-pressed="false">iOS</button>
@@ -140,239 +140,134 @@
     </div>
 
     <div class="work-stage">
-      <div class="work-float" id="work-float" aria-hidden="true">
-        <div class="work-float-frame"><img alt="" width="900" height="1950" decoding="async"></div>
-      </div>
+      <a class="work-float" id="work-float" href="#" aria-hidden="true" tabindex="-1">
+        <span class="work-float-label">View</span>
+        <span class="work-float-frame"><img alt="" width="900" height="1950" decoding="async"></span>
+      </a>
 
       <ul class="work-list" id="work-list">
 
-<li class="work-item reveal" data-cats="ios android" data-shot="assets/shots/alrajhi.webp">
-  <button class="work-row" type="button" aria-expanded="false" aria-controls="panel-al-rajhi-takaful">
+<li class="work-item reveal" data-cats="ios android" data-shot="assets/shots/alrajhi.webp" data-href="work/al-rajhi-takaful/">
+  <a class="work-row" href="work/al-rajhi-takaful/" id="p-al-rajhi-takaful">
     <span class="work-index" aria-hidden="true">01</span>
     <span class="work-main">
-      <span class="work-title" id="p-al-rajhi-takaful">Al Rajhi Takaful</span>
+      <span class="work-title">Al Rajhi Takaful</span>
       <span class="work-company">NTG · Client: Al Rajhi Takaful</span>
     </span>
     <span class="work-cat">Insurance &amp; Digital Services</span>
     <span class="work-chevron" aria-hidden="true"></span>
-  </button>
-  <div class="work-panel" id="panel-al-rajhi-takaful" hidden>
-    <figure class="work-panel-shot"><img src="assets/shots/alrajhi.webp" width="900" height="1950" alt="Al Rajhi Takaful App Store image: All your insurance needs in one place" loading="lazy" decoding="async"></figure>
-    <div class="work-panel-body">
-      <div class="card-head"><img class="app-icon" src="assets/icons/alrajhi.webp" width="60" height="60" alt="Al Rajhi Takaful app icon" loading="lazy" decoding="async"><div><h3>Al Rajhi Takaful</h3><p class="company">NTG · Client: Al Rajhi Takaful</p></div></div>
-      <p class="desc">Al Rajhi Takaful&#x27;s flagship digital insurance platform: customers manage policies, submit and track claims, and use insurance services securely on iOS and Android.</p>
-      <ul class="metrics" aria-label="Results"><li>1M+ downloads</li><li>4.4 App Store (4.1K)</li><li>4.3 Google Play (19.9K)</li></ul>
-      <ul class="tags" aria-label="Tech stack"><li>Flutter</li><li>BLoC</li><li>REST</li><li>Clean Architecture</li></ul>
-      <details class="kc-more"><summary>Key contributions <span class="kc-count">(7)</span><span class="sr-only"> for Al Rajhi Takaful</span></summary><ul class="kc-list"><li>Developed and enhanced 8+ user-facing modules across policy management, claims workflows and digital services.</li><li>Implemented Clean Architecture and scalable state management to ensure maintainability and long-term stability.</li><li>Integrated secure RESTful APIs and optimized network handling for reliable financial transactions.</li><li>Ensured high standards of performance, stability and secure handling of sensitive insurance and customer data.</li><li>Collaborated closely with product, backend and QA teams to deliver business-critical features aligned with regulatory and insurance requirements, translating 30+ complex requirements into intuitive Flutter UI flows.</li><li>Optimized UI/UX flows to improve usability and streamline complex insurance processes.</li><li>Participated in architectural improvements, code reviews and continuous refactoring to maintain code quality.</li></ul></details>
-      <div class="stores"><a class="store-badge" href="https://apps.apple.com/us/app/al-rajhi-takaful/id1511689440" target="_blank" rel="noopener"><img src="assets/badges/app-store.svg" alt="Download Al Rajhi Takaful on the App Store" width="120" height="40" loading="lazy"></a><a class="store-badge store-badge-gp" href="https://play.google.com/store/apps/details?id=com.alrajhitakaful.dcp" target="_blank" rel="noopener"><img src="assets/badges/google-play.png" alt="Get Al Rajhi Takaful on Google Play" width="135" height="40" loading="lazy"></a></div>
-    </div>
-  </div>
+  </a>
 </li>
 
-<li class="work-item reveal" data-cats="ios android" data-shot="assets/shots/ingame.webp">
-  <button class="work-row" type="button" aria-expanded="false" aria-controls="panel-ingame">
+<li class="work-item reveal" data-cats="ios android" data-shot="assets/shots/ingame.webp" data-href="work/ingame/">
+  <a class="work-row" href="work/ingame/" id="p-ingame">
     <span class="work-index" aria-hidden="true">02</span>
     <span class="work-main">
-      <span class="work-title" id="p-ingame">InGame</span>
+      <span class="work-title">InGame</span>
       <span class="work-company">Openner.vc</span>
     </span>
     <span class="work-cat">Gamified Football Platform</span>
     <span class="work-chevron" aria-hidden="true"></span>
-  </button>
-  <div class="work-panel" id="panel-ingame" hidden>
-    <figure class="work-panel-shot"><img src="assets/shots/ingame.webp" width="900" height="1950" alt="InGame App Store image: The hottest football prediction game" loading="lazy" decoding="async"></figure>
-    <div class="work-panel-body">
-      <div class="card-head"><img class="app-icon" src="assets/icons/ingame.webp" width="60" height="60" alt="InGame app icon" loading="lazy" decoding="async"><div><h3>InGame</h3><p class="company">Openner.vc</p></div></div>
-      <p class="desc">A gamified platform where football fans play, compete and engage with the game they love.</p>
-      <ul class="metrics" aria-label="Results"><li>100K+ downloads</li><li>4.5 Google Play (2.1K)</li><li>Zero P0 in month one</li></ul>
-      <ul class="tags" aria-label="Tech stack"><li>Flutter</li><li>BLoC</li><li>MVVM</li><li>GraphQL</li><li>REST</li></ul>
-      <details class="kc-more"><summary>Key contributions <span class="kc-count">(4)</span><span class="sr-only"> for InGame</span></summary><ul class="kc-list"><li>Led the development team (3 engineers) through the production phase to launch, ensuring a polished, bug-free final product.</li><li>Designed and implemented innovative gameplay mechanics and a user-friendly interface.</li><li>Used GraphQL and REST APIs for seamless integration with third-party services.</li><li>Designed and implemented standout features with Flutter, MVVM architecture and BLoC state management.</li></ul></details>
-      <div class="stores"><a class="store-badge" href="https://apps.apple.com/eg/app/ingame-sports/id6497486635" target="_blank" rel="noopener"><img src="assets/badges/app-store.svg" alt="Download InGame on the App Store" width="120" height="40" loading="lazy"></a><a class="store-badge store-badge-gp" href="https://play.google.com/store/apps/details?id=com.in_game.app" target="_blank" rel="noopener"><img src="assets/badges/google-play.png" alt="Get InGame on Google Play" width="135" height="40" loading="lazy"></a></div>
-    </div>
-  </div>
+  </a>
 </li>
 
-<li class="work-item reveal" data-cats="ios android" data-shot="assets/shots/digital-hockey.webp">
-  <button class="work-row" type="button" aria-expanded="false" aria-controls="panel-digital-hockey">
+<li class="work-item reveal" data-cats="ios android" data-shot="assets/shots/digital-hockey.webp" data-href="work/digital-hockey/">
+  <a class="work-row" href="work/digital-hockey/" id="p-digital-hockey">
     <span class="work-index" aria-hidden="true">03</span>
     <span class="work-main">
-      <span class="work-title" id="p-digital-hockey">Digital Hockey</span>
+      <span class="work-title">Digital Hockey</span>
       <span class="work-company">Swiss Digital Hockey AG</span>
     </span>
     <span class="work-cat">Sports Fan App (HC Ambrì Piotta)</span>
     <span class="work-chevron" aria-hidden="true"></span>
-  </button>
-  <div class="work-panel" id="panel-digital-hockey" hidden>
-    <figure class="work-panel-shot"><img src="assets/shots/digital-hockey.webp" width="900" height="1950" alt="Digital Hockey App Store image: Watch live matches and follow real-time stats" loading="lazy" decoding="async"></figure>
-    <div class="work-panel-body">
-      <div class="card-head"><img class="app-icon" src="assets/icons/digital-hockey.webp" width="60" height="60" alt="Digital Hockey app icon" loading="lazy" decoding="async"><div><h3>Digital Hockey</h3><p class="company">Swiss Digital Hockey AG</p></div></div>
-      <p class="desc">The companion app for hockey fans, players and clubs, built as a white-label app: multiple branded builds ship from one codebase.</p>
-      <ul class="metrics" aria-label="Results"><li>+30% match-day session length</li></ul>
-      <ul class="tags" aria-label="Tech stack"><li>Flutter</li><li>BLoC</li><li>Socket.io</li><li>RevenueCat</li><li>GoRouter</li></ul>
-      <details class="kc-more"><summary>Key contributions <span class="kc-count">(10)</span><span class="sr-only"> for Digital Hockey</span></summary><ul class="kc-list"><li>White-label architecture: multiple branded builds from one codebase via Android product flavors and iOS schemes.</li><li>Increased user engagement with real-time chat, live matches and other features using Socket.io.</li><li>Integrated RevenueCat for in-app purchases and subscriptions, enabling premium features and revenue generation.</li><li>Implemented the BLoC state management pattern and Clean Architecture for a well-structured, maintainable codebase.</li><li>Integrated a payment gateway for secure, seamless transactions within the app.</li><li>Used Sentry for issue tracking to proactively resolve bugs and improve app reliability.</li><li>Leveraged animations to enhance the user interface and provide an engaging user experience.</li><li>Used Dio for efficient network requests and data retrieval.</li><li>Implemented GoRouter navigation, improving user flow and usability.</li><li>Leveraged geo services to provide location-based features relevant to hockey fans.</li></ul></details>
-      <div class="stores"><a class="store-badge" href="https://apps.apple.com/us/app/digital-hockey/id6463205087" target="_blank" rel="noopener"><img src="assets/badges/app-store.svg" alt="Download Digital Hockey on the App Store" width="120" height="40" loading="lazy"></a><a class="store-badge store-badge-gp" href="https://play.google.com/store/apps/details?id=com.sdh.app" target="_blank" rel="noopener"><img src="assets/badges/google-play.png" alt="Get Digital Hockey on Google Play" width="135" height="40" loading="lazy"></a></div>
-    </div>
-  </div>
+  </a>
 </li>
 
-<li class="work-item reveal" data-cats="ios android" data-shot="assets/shots/qoodz.webp">
-  <button class="work-row" type="button" aria-expanded="false" aria-controls="panel-qoodz">
+<li class="work-item reveal" data-cats="ios android" data-shot="assets/shots/qoodz.webp" data-href="work/qoodz/">
+  <a class="work-row" href="work/qoodz/" id="p-qoodz">
     <span class="work-index" aria-hidden="true">04</span>
     <span class="work-main">
-      <span class="work-title" id="p-qoodz">Qoodz</span>
+      <span class="work-title">Qoodz</span>
       <span class="work-company">MakanE</span>
     </span>
     <span class="work-cat">Dining Discount Network (UAE)</span>
     <span class="work-chevron" aria-hidden="true"></span>
-  </button>
-  <div class="work-panel" id="panel-qoodz" hidden>
-    <figure class="work-panel-shot"><img src="assets/shots/qoodz.webp" width="900" height="1950" alt="Qoodz App Store image: home screen with dining offers" loading="lazy" decoding="async"></figure>
-    <div class="work-panel-body">
-      <div class="card-head"><img class="app-icon" src="assets/icons/qoodz.webp" width="60" height="60" alt="Qoodz app icon" loading="lazy" decoding="async"><div><h3>Qoodz</h3><p class="company">MakanE</p></div></div>
-      <p class="desc">Connects users to a network of restaurants and cafés, offering exclusive discounts through QR code scanning for a seamless, personalized dining experience.</p>
-      <ul class="metrics" aria-label="Results"><li>QR redemption +20%</li><li>~35% faster cold start</li><li>Crash-free &gt;99% (Sentry)</li></ul>
-      <ul class="tags" aria-label="Tech stack"><li>Flutter</li><li>BLoC</li><li>Firebase</li><li>Payment Gateway</li></ul>
-      <details class="kc-more"><summary>Key contributions <span class="kc-count">(9)</span><span class="sr-only"> for Qoodz</span></summary><ul class="kc-list"><li>Revamped the app from monolithic code to the BLoC pattern and Clean Architecture for a well-structured, maintainable codebase.</li><li>Ensured seamless QR-based discount redemption across multiple establishments.</li><li>Revamped the app&#x27;s UI/UX for better usability and engagement.</li><li>Implemented new features to enhance partner and customer interactions.</li><li>Integrated Firebase for real-time updates and analytics.</li><li>Integrated a payment gateway for secure, seamless transactions within the app.</li><li>Used Sentry for issue tracking to proactively resolve bugs and improve app reliability.</li><li>Leveraged animations to enhance the user interface and provide an engaging user experience.</li><li>Used Dio for efficient network requests and data retrieval.</li></ul></details>
-      <div class="stores"><a class="store-badge" href="https://apps.apple.com/eg/app/qoodz/id1661863581" target="_blank" rel="noopener"><img src="assets/badges/app-store.svg" alt="Download Qoodz on the App Store" width="120" height="40" loading="lazy"></a><a class="store-badge store-badge-gp" href="https://play.google.com/store/apps/details?id=com.qoodz.app" target="_blank" rel="noopener"><img src="assets/badges/google-play.png" alt="Get Qoodz on Google Play" width="135" height="40" loading="lazy"></a></div>
-    </div>
-  </div>
+  </a>
 </li>
 
-<li class="work-item reveal" data-cats="ios android" data-shot="assets/shots/qoodz-manager.webp">
-  <button class="work-row" type="button" aria-expanded="false" aria-controls="panel-qoodz-manager">
+<li class="work-item reveal" data-cats="ios android" data-shot="assets/shots/qoodz-manager.webp" data-href="work/qoodz-manager/">
+  <a class="work-row" href="work/qoodz-manager/" id="p-qoodz-manager">
     <span class="work-index" aria-hidden="true">05</span>
     <span class="work-main">
-      <span class="work-title" id="p-qoodz-manager">Qoodz Manager</span>
+      <span class="work-title">Qoodz Manager</span>
       <span class="work-company">MakanE</span>
     </span>
     <span class="work-cat">Partner POS &amp; Redemption App</span>
     <span class="work-chevron" aria-hidden="true"></span>
-  </button>
-  <div class="work-panel" id="panel-qoodz-manager" hidden>
-    <figure class="work-panel-shot"><img src="assets/shots/qoodz-manager.webp" width="900" height="1950" alt="Qoodz Manager App Store image: login screen" loading="lazy" decoding="async"></figure>
-    <div class="work-panel-body">
-      <div class="card-head"><img class="app-icon" src="assets/icons/qoodz-manager.webp" width="60" height="60" alt="Qoodz Manager app icon" loading="lazy" decoding="async"><div><h3>Qoodz Manager</h3><p class="company">MakanE</p></div></div>
-      <p class="desc">A full point-of-sale (POS) application for Qoodz restaurant and café partners, with promo-code redemption and customer-offer management that makes it easy to exchange and track offers.</p>
-      <ul class="metrics" aria-label="Results"><li>Redemption flow 5→2 steps (~40% faster)</li><li>8+ partner features</li><li>Used daily by 100+ outlets</li></ul>
-      <ul class="tags" aria-label="Tech stack"><li>Flutter</li><li>BLoC</li><li>Firebase</li><li>Dio</li></ul>
-      <details class="kc-more"><summary>Key contributions <span class="kc-count">(11)</span><span class="sr-only"> for Qoodz Manager</span></summary><ul class="kc-list"><li>Built the full offline mode: sales keep working without an internet connection and sync once the device is back online.</li><li>Revamped the app&#x27;s design and functionality for an improved partner experience.</li><li>Added new features to simplify offer redemption and tracking.</li><li>Integrated Firebase for real-time data synchronization and analytics.</li><li>Optimized app performance for seamless business operations.</li><li>Enhanced UI/UX to ensure smooth usability for restaurant partners.</li><li>Implemented the BLoC state management pattern and Clean Architecture for a well-structured, maintainable codebase.</li><li>Integrated a payment gateway for secure, seamless transactions within the app.</li><li>Used Sentry for issue tracking to proactively resolve bugs and improve app reliability.</li><li>Leveraged animations to enhance the user interface and provide an engaging user experience.</li><li>Used Dio for efficient network requests and data retrieval.</li></ul></details>
-      <div class="stores"><a class="store-badge" href="https://apps.apple.com/us/app/qoodz-manager/id1662103779" target="_blank" rel="noopener"><img src="assets/badges/app-store.svg" alt="Download Qoodz Manager on the App Store" width="120" height="40" loading="lazy"></a><a class="store-badge store-badge-gp" href="https://play.google.com/store/apps/details?id=com.qoodz.pos" target="_blank" rel="noopener"><img src="assets/badges/google-play.png" alt="Get Qoodz Manager on Google Play" width="135" height="40" loading="lazy"></a></div>
-    </div>
-  </div>
+  </a>
 </li>
 
-<li class="work-item reveal" data-cats="android" data-shot="assets/shots/farmer.webp">
-  <button class="work-row" type="button" aria-expanded="false" aria-controls="panel-farmer-app">
+<li class="work-item reveal" data-cats="android" data-shot="assets/shots/farmer.webp" data-href="work/farmer-app/">
+  <a class="work-row" href="work/farmer-app/" id="p-farmer-app">
     <span class="work-index" aria-hidden="true">06</span>
     <span class="work-main">
-      <span class="work-title" id="p-farmer-app">Farmer App</span>
+      <span class="work-title">Farmer App</span>
       <span class="work-company">Mozare3</span>
     </span>
     <span class="work-cat">Agri-Fintech</span>
     <span class="work-chevron" aria-hidden="true"></span>
-  </button>
-  <div class="work-panel" id="panel-farmer-app" hidden>
-    <figure class="work-panel-shot"><img src="assets/shots/farmer.webp" width="360" height="780" alt="Farmer App Google Play screenshot: onboarding" loading="lazy" decoding="async"></figure>
-    <div class="work-panel-body">
-      <div class="card-head"><img class="app-icon" src="assets/icons/farmer.webp" width="60" height="60" alt="Farmer App app icon" loading="lazy" decoding="async"><div><h3>Farmer App</h3><p class="company">Mozare3</p></div></div>
-      <p class="desc">Contract-farming app offering financial assistance, materials and agricultural extension services to farmers, with electronic account statements for tracking financial transactions.</p>
-      <ul class="metrics" aria-label="Results"><li>10K+ downloads</li><li>10K+ farmers</li></ul>
-      <ul class="tags" aria-label="Tech stack"><li>Flutter</li><li>GetX</li><li>Dio</li><li>Retrofit</li><li>DI</li></ul>
-      <details class="kc-more"><summary>Key contributions <span class="kc-count">(6)</span><span class="sr-only"> for Farmer App</span></summary><ul class="kc-list"><li>Led delivery of core mobile features (e-wallet balance, in-app commerce, analytics) for 10K+ active farmers.</li><li>Re-architected the legacy codebase to Clean Architecture + GetX, cutting average screen load time ~35%.</li><li>Designed and shipped CI/CD pipelines (CodeMagic, Fastlane), reducing release time from 2 days to under 30 minutes per build.</li><li>Hardened security of user and financial data (token rotation, encrypted local storage, Sentry), driving production crashes down 60%.</li><li>Dio and Retrofit HTTP clients, dependency injection with injectable, and JSON serialization with json_annotation / json_serializable.</li><li>Clean Code principles, environment configuration via env files, and static analysis with Flutter Lints.</li></ul></details>
-      <div class="stores"><a class="store-badge store-badge-gp" href="https://play.google.com/store/apps/details?id=com.mozare3.farmer" target="_blank" rel="noopener"><img src="assets/badges/google-play.png" alt="Get Farmer App on Google Play" width="135" height="40" loading="lazy"></a></div>
-    </div>
-  </div>
+  </a>
 </li>
 
-<li class="work-item reveal" data-cats="android" data-shot="assets/shots/partners.webp">
-  <button class="work-row" type="button" aria-expanded="false" aria-controls="panel-mozare3-partners">
+<li class="work-item reveal" data-cats="android" data-shot="assets/shots/partners.webp" data-href="work/mozare3-partners/">
+  <a class="work-row" href="work/mozare3-partners/" id="p-mozare3-partners">
     <span class="work-index" aria-hidden="true">07</span>
     <span class="work-main">
-      <span class="work-title" id="p-mozare3-partners">Mozare3 Partners</span>
+      <span class="work-title">Mozare3 Partners</span>
       <span class="work-company">Mozare3</span>
     </span>
     <span class="work-cat">Field-Force Task App</span>
     <span class="work-chevron" aria-hidden="true"></span>
-  </button>
-  <div class="work-panel" id="panel-mozare3-partners" hidden>
-    <figure class="work-panel-shot"><img src="assets/shots/partners.webp" width="351" height="780" alt="Mozare3 Partners Google Play screenshot: clients list" loading="lazy" decoding="async"></figure>
-    <div class="work-panel-body">
-      <div class="card-head"><img class="app-icon" src="assets/icons/mozare3-partners.webp" width="60" height="60" alt="Mozare3 Partners app icon" loading="lazy" decoding="async"><div><h3>Mozare3 Partners</h3><p class="company">Mozare3</p></div></div>
-      <p class="desc">Used by the Mozare3 field force to submit their periodic tasks. Developed with Flutter.</p>
-      <ul class="tags" aria-label="Tech stack"><li>Flutter</li><li>BLoC</li><li>Clean Architecture</li><li>Dio</li></ul>
-      <details class="kc-more"><summary>Key contributions <span class="kc-count">(3)</span><span class="sr-only"> for Mozare3 Partners</span></summary><ul class="kc-list"><li>Architected the app with the BLoC state management pattern and Clean Architecture for a well-structured, maintainable codebase.</li><li>Enhanced the UI with custom animations to improve aesthetics and ensure an engaging user experience.</li><li>Optimized networking with Dio for efficient network requests and seamless data retrieval.</li></ul></details>
-      <div class="stores"><a class="store-badge store-badge-gp" href="https://play.google.com/store/apps/details?id=com.partners.mozare3" target="_blank" rel="noopener"><img src="assets/badges/google-play.png" alt="Get Mozare3 Partners on Google Play" width="135" height="40" loading="lazy"></a></div>
-    </div>
-  </div>
+  </a>
 </li>
 
-<li class="work-item reveal" data-cats="ios android" data-shot="assets/shots/dexef.webp">
-  <button class="work-row" type="button" aria-expanded="false" aria-controls="panel-dexef-bills">
+<li class="work-item reveal" data-cats="ios android" data-shot="assets/shots/dexef.webp" data-href="work/dexef-bills/">
+  <a class="work-row" href="work/dexef-bills/" id="p-dexef-bills">
     <span class="work-index" aria-hidden="true">08</span>
     <span class="work-main">
-      <span class="work-title" id="p-dexef-bills">Dexef Bills</span>
+      <span class="work-title">Dexef Bills</span>
       <span class="work-company">Dexef</span>
     </span>
     <span class="work-cat">Cloud-Based POS</span>
     <span class="work-chevron" aria-hidden="true"></span>
-  </button>
-  <div class="work-panel" id="panel-dexef-bills" hidden>
-    <figure class="work-panel-shot"><img src="assets/shots/dexef.webp" width="900" height="1950" alt="Dexef Bills App Store image: sales dashboard" loading="lazy" decoding="async"></figure>
-    <div class="work-panel-body">
-      <div class="card-head"><img class="app-icon" src="assets/icons/dexef.webp" width="60" height="60" alt="Dexef Bills app icon" loading="lazy" decoding="async"><div><h3>Dexef Bills</h3><p class="company">Dexef</p></div></div>
-      <p class="desc">Cloud-based point-of-sale application that simplifies inventory and transaction management for businesses.</p>
-      <ul class="metrics" aria-label="Results"><li>1K+ daily transactions per merchant</li><li>Offline-first sync</li></ul>
-      <ul class="tags" aria-label="Tech stack"><li>Flutter</li><li>Dart</li><li>REST</li></ul>
-      <details class="kc-more"><summary>Key contributions <span class="kc-count">(4)</span><span class="sr-only"> for Dexef Bills</span></summary><ul class="kc-list"><li>Developed Dexef POS with Flutter and Dart, providing real-time data on sales, inventory, and employee and customer management.</li><li>Integrated various APIs to streamline business operations and increase profitability.</li><li>Created an intuitive user interface backed by real-time data from the integrated APIs.</li><li>Built offline-first synchronization for real-time inventory and transactions over REST.</li></ul></details>
-      <div class="stores"><a class="store-badge" href="https://apps.apple.com/eg/app/dexef-pos/id1618652580" target="_blank" rel="noopener"><img src="assets/badges/app-store.svg" alt="Download Dexef Bills on the App Store" width="120" height="40" loading="lazy"></a><a class="store-badge store-badge-gp" href="https://play.google.com/store/apps/details?id=com.dexef.dexef_one_pro_flutter" target="_blank" rel="noopener"><img src="assets/badges/google-play.png" alt="Get Dexef Bills on Google Play" width="135" height="40" loading="lazy"></a></div>
-    </div>
-  </div>
+  </a>
 </li>
 
-<li class="work-item reveal" data-cats="ios" data-shot="assets/shots/mahallat.webp">
-  <button class="work-row" type="button" aria-expanded="false" aria-controls="panel-mahallat-jo">
+<li class="work-item reveal" data-cats="ios" data-shot="assets/shots/mahallat.webp" data-href="work/mahallat-jo/">
+  <a class="work-row" href="work/mahallat-jo/" id="p-mahallat-jo">
     <span class="work-index" aria-hidden="true">09</span>
     <span class="work-main">
-      <span class="work-title" id="p-mahallat-jo">Mahallat Jo</span>
+      <span class="work-title">Mahallat Jo</span>
       <span class="work-company">MakanE</span>
     </span>
     <span class="work-cat">Deals &amp; Savings App</span>
     <span class="work-chevron" aria-hidden="true"></span>
-  </button>
-  <div class="work-panel" id="panel-mahallat-jo" hidden>
-    <figure class="work-panel-shot"><img src="assets/shots/mahallat.webp" width="900" height="1950" alt="Mahallat Jo App Store image: splash and home" loading="lazy" decoding="async"></figure>
-    <div class="work-panel-body">
-      <div class="card-head"><img class="app-icon" src="assets/icons/mahallat.webp" width="60" height="60" alt="Mahallat Jo app icon" loading="lazy" decoding="async"><div><h3>Mahallat Jo</h3><p class="company">MakanE</p></div></div>
-      <p class="desc">Revamped and expanded the Mahallat Jo app, enhancing the user experience and access to benefits, deals and savings across a diverse merchant network.</p>
-      <ul class="tags" aria-label="Tech stack"><li>Flutter</li></ul>
-      <details class="kc-more"><summary>Key contributions <span class="kc-count">(4)</span><span class="sr-only"> for Mahallat Jo</span></summary><ul class="kc-list"><li>Led the development and implementation of new features such as search and a notifications system.</li><li>Collaborated with cross-functional teams to ensure seamless user experiences.</li><li>Conducted rigorous testing and optimization to enhance app performance.</li><li>Implemented strategies to expand the merchant network and categories.</li></ul></details>
-      <div class="stores"><a class="store-badge" href="https://apps.apple.com/us/app/mahallatjo/id6449230776" target="_blank" rel="noopener"><img src="assets/badges/app-store.svg" alt="Download Mahallat Jo on the App Store" width="120" height="40" loading="lazy"></a></div>
-    </div>
-  </div>
+  </a>
 </li>
 
-<li class="work-item reveal" data-cats="">
-  <button class="work-row" type="button" aria-expanded="false" aria-controls="panel-jks-portal">
+<li class="work-item reveal" data-cats="" data-href="work/jks-portal/">
+  <a class="work-row" href="work/jks-portal/" id="p-jks-portal">
     <span class="work-index" aria-hidden="true">10</span>
     <span class="work-main">
-      <span class="work-title" id="p-jks-portal">JKS Portal</span>
+      <span class="work-title">JKS Portal</span>
       <span class="work-company">Jeddah Knowledge International School</span>
     </span>
     <span class="work-cat">International School Portal</span>
     <span class="work-chevron" aria-hidden="true"></span>
-  </button>
-  <div class="work-panel" id="panel-jks-portal" hidden>
-    <div class="work-panel-body">
-      <div class="card-head"><div class="app-icon monogram" role="img" aria-label="JKS Portal monogram">JP</div><div><h3>JKS Portal</h3><p class="company">Jeddah Knowledge International School</p></div></div>
-      <p class="desc">A portal app for students, parents and staff of an international school.</p>
-      <ul class="tags" aria-label="Tech stack"><li>Flutter</li></ul>
-      <details class="kc-more"><summary>Key contributions <span class="kc-count">(1)</span><span class="sr-only"> for JKS Portal</span></summary><ul class="kc-list"><li>Developed a comprehensive portal app for students, parents and staff, facilitating seamless communication and access to school services.</li></ul></details>
-      <p class="note">No longer listed on the app stores.</p>
-    </div>
-  </div>
+  </a>
 </li>
 
-      </ul>
+      </ul>>
     </div>
   </div>
 </section>
@@ -474,6 +369,6 @@
     <p><a href="#top">Back to top ↑</a></p>
   </div>
 </footer>
-<script src="assets/js/main.js?v=6" defer></script>
+<script src="assets/js/main.js?v=7" defer></script>
 </body>
 </html>

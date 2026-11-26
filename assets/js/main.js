@@ -312,7 +312,7 @@
     });
   }
 
-  // ===== Work list: expand + cursor-follow float preview =====
+  // ===== Work list: cursor-follow float preview + case-page links =====
   var workStage = document.querySelector('.work-stage');
   var workList = document.getElementById('work-list');
   var workFloat = document.getElementById('work-float');
@@ -322,33 +322,7 @@
     workStage.classList.add('is-touch');
   }
 
-  function closeAllWork(except) {
-    document.querySelectorAll('.work-item.is-open').forEach(function (item) {
-      if (except && item === except) return;
-      item.classList.remove('is-open');
-      var btn = item.querySelector('.work-row');
-      var panel = item.querySelector('.work-panel');
-      if (btn) btn.setAttribute('aria-expanded', 'false');
-      if (panel) panel.hidden = true;
-    });
-  }
-
-  if (workList) {
-    workList.querySelectorAll('.work-row').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var item = btn.closest('.work-item');
-        if (!item) return;
-        var open = !item.classList.contains('is-open');
-        closeAllWork(open ? item : null);
-        item.classList.toggle('is-open', open);
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        var panel = item.querySelector('.work-panel');
-        if (panel) panel.hidden = !open;
-      });
-    });
-  }
-
-  // Floating preview (desktop fine pointer only)
+  // Floating preview (desktop fine pointer only) — View label + image; click opens case page
   if (workStage && workList && workFloat && workFloatImg && finePointer) {
     var targetX = 0;
     var targetY = 0;
@@ -357,11 +331,12 @@
     var floatOn = false;
     var rafId = 0;
     var LERP = 0.16;
+    var activeHref = '';
 
     function setFloatPos(x, y) {
-      var pad = 24;
+      var pad = 28;
       var fw = workFloat.offsetWidth || 240;
-      var fh = workFloat.offsetHeight || 360;
+      var fh = workFloat.offsetHeight || 400;
       var maxX = (window.innerWidth || 0) - fw / 2 - pad;
       var minX = fw / 2 + pad;
       var maxY = (window.innerHeight || 0) - fh / 2 - pad;
@@ -392,6 +367,7 @@
 
     function showFloat(item, e) {
       var shot = item.getAttribute('data-shot');
+      var href = item.getAttribute('data-href') || (item.querySelector('.work-row') || {}).getAttribute('href') || '';
       if (!shot) {
         hideFloat();
         return;
@@ -399,27 +375,38 @@
       if (workFloatImg.getAttribute('src') !== shot) {
         workFloatImg.setAttribute('src', shot);
       }
+      activeHref = href;
+      if (href) {
+        workFloat.setAttribute('href', href);
+        workFloat.setAttribute('aria-label', 'View project');
+        workFloat.removeAttribute('tabindex');
+      }
       workStage.classList.add('is-hovering');
       document.querySelectorAll('.work-item.is-active').forEach(function (el) {
         el.classList.remove('is-active');
       });
       item.classList.add('is-active');
-      // Bias preview slightly right/up so the title stays readable
-      targetX = e.clientX + 72;
-      targetY = e.clientY - 12;
+      // Bias preview slightly right/up so the title stays readable; label sits above the frame
+      targetX = e.clientX + 80;
+      targetY = e.clientY - 8;
       if (!floatOn) {
         curX = targetX;
         curY = targetY;
         setFloatPos(curX, curY);
         floatOn = true;
         workFloat.classList.add('is-on');
+        workFloat.setAttribute('aria-hidden', 'false');
       }
       ensureTick();
     }
 
     function hideFloat() {
       floatOn = false;
+      activeHref = '';
       workFloat.classList.remove('is-on');
+      workFloat.setAttribute('aria-hidden', 'true');
+      workFloat.setAttribute('tabindex', '-1');
+      workFloat.setAttribute('href', '#');
       workStage.classList.remove('is-hovering');
       document.querySelectorAll('.work-item.is-active').forEach(function (el) {
         el.classList.remove('is-active');
@@ -434,18 +421,31 @@
       });
       row.addEventListener('mousemove', function (e) {
         if (!item.getAttribute('data-shot')) return;
-        targetX = e.clientX + 72;
-        targetY = e.clientY - 12;
+        targetX = e.clientX + 80;
+        targetY = e.clientY - 8;
         ensureTick();
       });
       row.addEventListener('mouseleave', function (e) {
         var to = e.relatedTarget;
-        if (to && workList.contains(to)) return;
+        if (to && (workList.contains(to) || workFloat.contains(to))) return;
         hideFloat();
       });
     });
 
-    workList.addEventListener('mouseleave', hideFloat);
+    workFloat.addEventListener('mouseenter', function () {
+      /* keep float visible while pointer is over View / image */
+    });
+    workFloat.addEventListener('mouseleave', function (e) {
+      var to = e.relatedTarget;
+      if (to && workList.contains(to)) return;
+      hideFloat();
+    });
+
+    workList.addEventListener('mouseleave', function (e) {
+      var to = e.relatedTarget;
+      if (to && workFloat.contains(to)) return;
+      hideFloat();
+    });
   }
 
   var y = document.getElementById('year');
