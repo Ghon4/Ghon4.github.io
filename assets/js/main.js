@@ -473,111 +473,24 @@
     });
   }
 
-  // ===== Case pages: sticky stage / masked scenes / dual sliders (Dennis + Motionsites scroll) =====
-  function clamp01(n) {
-    if (n < 0) return 0;
-    if (n > 1) return 1;
-    return n;
-  }
-
-  function sectionProgress(el) {
-    var rect = el.getBoundingClientRect();
-    var vh = window.innerHeight || 1;
-    var total = Math.max(1, rect.height - vh);
-    return clamp01((-rect.top) / total);
-  }
-
-  var caseStage = document.querySelector('[data-case-stage]');
-  var caseStagePin = caseStage ? caseStage.querySelector('.case-stage-pin') : null;
-  var caseScenes = document.querySelectorAll('[data-case-scene]');
-  var caseSliders = document.querySelector('[data-case-sliders]');
+  // Case pages: next-project wash only (imagery reuses home .hero-shots float/tilt/enter)
   var caseNext = document.querySelector('.case-next');
-  var caseMotionEls = caseStage || caseScenes.length || caseSliders || caseNext;
-
-  if (caseMotionEls) {
+  if (caseNext) {
     var caseTick = false;
-    var stageMx = 0;
-    var stageMy = 0;
-    var stageTmx = 0;
-    var stageTmy = 0;
-
-    // Title-adjacent picture: Motionsites enter (mask/blur settle) then sticky scroll cinema
-    if (caseStage && caseStagePin) {
-      if (reduceMotion || revealAll) {
-        caseStage.classList.add('is-ready');
-        caseStagePin.style.setProperty('--stage-enter', '1');
-      } else {
-                requestAnimationFrame(function () {
-          requestAnimationFrame(function () {
-            caseStage.classList.add('is-ready');
-          });
-        });
-      }
-      if (finePointer && !reduceMotion) {
-        caseStagePin.addEventListener('pointermove', function (e) {
-          var r = caseStagePin.getBoundingClientRect();
-          stageTmx = ((e.clientX - r.left) / Math.max(1, r.width) - 0.5) * 2;
-          stageTmy = ((e.clientY - r.top) / Math.max(1, r.height) - 0.5) * 2;
-          requestCaseTick();
-        }, { passive: true });
-        caseStagePin.addEventListener('pointerleave', function () {
-          stageTmx = 0;
-          stageTmy = 0;
-          requestCaseTick();
-        });
-      }
-    }
-
-    function updateCaseMotion() {
+    function updateCaseNext() {
       caseTick = false;
-      if (caseStage && caseStagePin) {
-        var sp = reduceMotion ? 1 : sectionProgress(caseStage);
-        caseStage.classList.toggle('is-scrolling', !reduceMotion && sp > 0.02);
-        caseStagePin.style.setProperty('--stage-p', sp.toFixed(3));
-        if (!reduceMotion && finePointer) {
-          stageMx += (stageTmx - stageMx) * 0.12;
-          stageMy += (stageTmy - stageMy) * 0.12;
-          caseStagePin.style.setProperty('--mx', stageMx.toFixed(3));
-          caseStagePin.style.setProperty('--my', stageMy.toFixed(3));
-          if (Math.abs(stageTmx - stageMx) > 0.002 || Math.abs(stageTmy - stageMy) > 0.002) {
-            requestCaseTick();
-          }
-        } else {
-          caseStagePin.style.setProperty('--mx', '0');
-          caseStagePin.style.setProperty('--my', '0');
-        }
-      }
-      caseScenes.forEach(function (scene) {
-        var pin = scene.querySelector('.case-scene-pin');
-        if (!pin) return;
-        var p = 1;
-        if (!reduceMotion) {
-          var rect = scene.getBoundingClientRect();
-          var vh = window.innerHeight || 1;
-          p = clamp01((vh * 0.72 - rect.top) / (vh * 0.85));
-        }
-        pin.style.setProperty('--scene-p', p.toFixed(3));
-      });
-      if (caseSliders) {
-        var srect = caseSliders.getBoundingClientRect();
-        var svh = window.innerHeight || 1;
-        var slideP = reduceMotion ? 0.4 : clamp01(1 - (srect.top + srect.height * 0.2) / (svh + srect.height));
-        caseSliders.style.setProperty('--slide-p', slideP.toFixed(3));
-      }
-      if (caseNext) {
-        var nrect = caseNext.getBoundingClientRect();
-        var nvh = window.innerHeight || 1;
-        var np = 1 - Math.min(1, Math.max(0, nrect.top / nvh));
-        caseNext.style.setProperty('--next-progress', np.toFixed(3));
-        if (nrect.top < nvh * 0.85) caseNext.classList.add('is-in');
-      }
+      var nrect = caseNext.getBoundingClientRect();
+      var nvh = window.innerHeight || 1;
+      var np = 1 - Math.min(1, Math.max(0, nrect.top / nvh));
+      caseNext.style.setProperty('--next-progress', np.toFixed(3));
+      if (nrect.top < nvh * 0.85) caseNext.classList.add('is-in');
     }
     function requestCaseTick() {
       if (caseTick) return;
       caseTick = true;
-      requestAnimationFrame(updateCaseMotion);
+      requestAnimationFrame(updateCaseNext);
     }
-    if (caseNext && (reduceMotion || revealAll)) caseNext.classList.add('is-in');
+    if (reduceMotion || revealAll) caseNext.classList.add('is-in');
     window.addEventListener('scroll', requestCaseTick, { passive: true });
     window.addEventListener('resize', requestCaseTick);
     requestCaseTick();
