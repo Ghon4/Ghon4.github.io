@@ -7,7 +7,7 @@
 <meta name="description" content="Mohamed Ghoniem is a Senior Mobile Engineer (Flutter) in Cairo, Egypt with 7+ years shipping 10+ production iOS and Android apps across fintech, insurance, sports and e-commerce (1.1M+ downloads). Open to remote roles and relocation.">
 <meta name="author" content="Mohamed Ghoniem">
 <link rel="canonical" href="https://ghon4.github.io/">
-<meta name="theme-color" content="#07130d">
+<meta name="theme-color" content="#07130d" id="theme-color">
 <meta name="color-scheme" content="dark light">
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="Mohamed Ghoniem">
@@ -28,8 +28,11 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
 <script>(function(){var r=document.documentElement;r.classList.add('js');r.classList.remove('no-js');try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';r.setAttribute('data-theme',t);}catch(e){}})();</script>
-<link rel="stylesheet" href="assets/css/style.css?v=3">
+<link rel="stylesheet" href="assets/css/style.css?v=5">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Mohamed Ghoniem", "jobTitle": "Senior Mobile Engineer (Flutter)", "url": "https://ghon4.github.io/", "email": "mailto:mohamed.maher.ghoniem@gmail.com", "telephone": "+201159480900", "address": {"@type": "PostalAddress", "addressLocality": "Cairo", "addressCountry": "EG"}, "alumniOf": {"@type": "CollegeOrUniversity", "name": "Menoufia University"}, "knowsLanguage": ["Arabic", "English"], "knowsAbout": ["Flutter", "Dart", "iOS", "Android", "BLoC", "Riverpod", "Clean Architecture", "CI/CD", "Mobile app development"], "sameAs": ["https://www.linkedin.com/in/mohamed-ghoniem/", "https://github.com/Ghon4"], "worksFor": {"@type": "Organization", "name": "NTG"}}</script>
 </head>
 <body>
@@ -38,7 +41,10 @@
   <div class="container">
     <nav class="nav" aria-label="Main">
       <a class="brand" href="#top" aria-label="Mohamed Ghoniem, back to top"><span class="brand-mark" aria-hidden="true">MG</span><span>Mohamed Ghoniem</span></a>
-      <ul class="nav-links"><li><a href="#about">About</a></li><li><a href="#projects">Projects</a></li><li><a href="#experience">Experience</a></li><li><a href="#skills">Skills</a></li><li><a href="#education">Education</a></li><li><a href="#contact">Contact</a></li></ul>
+      <div class="nav-links-wrap">
+        <span class="nav-indicator" aria-hidden="true"></span>
+        <ul class="nav-links"><li><a href="#about">About</a></li><li><a href="#projects">Projects</a></li><li><a href="#experience">Experience</a></li><li><a href="#skills">Skills</a></li><li><a href="#education">Education</a></li><li><a href="#contact">Contact</a></li></ul>
+      </div>
       <div class="nav-actions">
         <button class="icon-btn theme-toggle" type="button" aria-label="Toggle light theme" aria-pressed="false">
           <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
@@ -57,9 +63,14 @@
 <main id="main">
 
 <section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="hero-atmosphere" aria-hidden="true">
+    <span class="orb orb-a"></span>
+    <span class="orb orb-b"></span>
+    <span class="orb orb-c"></span>
+  </div>
   <div class="hero-grid-bg" aria-hidden="true"></div>
   <div class="container hero-layout">
-    <div class="hero-copy">
+    <div class="hero-copy hero-enter">
       <p class="badge-open"><span class="dot" aria-hidden="true"></span>Open to remote roles &amp; relocation (Gulf / EU)</p>
       <h1 id="hero-title">Mohamed Ghoniem</h1>
       <p class="role">Senior Mobile Engineer (Flutter)</p>
@@ -69,8 +80,8 @@
         <li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Arabic (Native) · English (C1)</li>
       </ul>
       <div class="cta-row">
-        <a class="btn btn-primary" href="assets/Mohamed-Ghoniem-MobileAppDev-CV.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 5-5m-5 5-5-5M4 19h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Download CV</a>
-        <a class="btn" href="#contact"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z M3.5 6.5l8.5 6.5 8.5-6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Contact</a>
+        <a class="btn btn-primary btn-magnetic" href="assets/Mohamed-Ghoniem-MobileAppDev-CV.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 5-5m-5 5-5-5M4 19h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Download CV</a>
+        <a class="btn btn-magnetic" href="#contact"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z M3.5 6.5l8.5 6.5 8.5-6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Contact</a>
         <a class="btn" href="https://www.linkedin.com/in/mohamed-ghoniem/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5M3 9.75h4v11H3zm6.5 0h3.8v1.5h.06a4.2 4.2 0 0 1 3.76-2.06c4 0 4.88 2.6 4.88 6v5.56h-4v-4.93c0-1.18 0-2.7-1.64-2.7s-1.9 1.28-1.9 2.6v5.03h-4z"/></svg>LinkedIn</a>
         <a class="btn" href="https://github.com/Ghon4" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34a2.65 2.65 0 0 0-1.11-1.46c-.9-.62.07-.6.07-.6a2.1 2.1 0 0 1 1.53 1.03 2.13 2.13 0 0 0 2.91.83 2.13 2.13 0 0 1 .63-1.34c-2.22-.25-4.55-1.11-4.55-4.94a3.87 3.87 0 0 1 1.03-2.69 3.6 3.6 0 0 1 .1-2.65s.84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02a3.6 3.6 0 0 1 .1 2.65 3.86 3.86 0 0 1 1.03 2.69c0 3.84-2.34 4.68-4.57 4.93a2.38 2.38 0 0 1 .68 1.85v2.74c0 .33.18.58.69.48A10 10 0 0 0 12 2"/></svg>GitHub</a>
       </div>
@@ -79,12 +90,12 @@
         <span><strong>Top 3% talent</strong> · Vetted by Toptal</span>
       </a>
     </div>
-    <div class="hero-shots" aria-hidden="true">
+    <div class="hero-shots hero-enter" aria-hidden="true">
       <figure class="shot-card s-left"><img src="assets/shots/ingame.webp" width="900" height="1950" alt=""></figure>
       <figure class="shot-card s-center"><img src="assets/shots/alrajhi.webp" width="900" height="1950" alt="" fetchpriority="high"></figure>
       <figure class="shot-card s-right"><img src="assets/shots/digital-hockey.webp" width="900" height="1950" alt=""></figure>
     </div>
-    <ul class="stats-strip" aria-label="Key numbers">
+    <ul class="stats-strip glass-band" aria-label="Key numbers">
       <li class="reveal"><strong>7+</strong><span>years of experience</span></li>
       <li class="reveal"><strong>10+</strong><span>production iOS &amp; Android apps</span></li>
       <li class="reveal"><strong>1.1M+</strong><span>downloads, collectively</span></li>
@@ -308,7 +319,7 @@
       <h2 id="contact-title">Let’s talk</h2>
       <p>Open to remote roles and relocation (Gulf / EU). The quickest way to reach me is email or WhatsApp.</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="assets/Mohamed-Ghoniem-MobileAppDev-CV.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 5-5m-5 5-5-5M4 19h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Download CV (PDF)</a>
+        <a class="btn btn-primary btn-magnetic" href="assets/Mohamed-Ghoniem-MobileAppDev-CV.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 5-5m-5 5-5-5M4 19h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Download CV (PDF)</a>
         <a class="btn" href="https://drive.google.com/file/d/1toSSCozR6A0DUCEtVGoaBaz46G_oabEI/view" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>View CV on Google Drive</a>
       </div>
       <ul class="contact-list">
@@ -329,6 +340,6 @@
     <p><a href="#top">Back to top ↑</a></p>
   </div>
 </footer>
-<script src="assets/js/main.js?v=3" defer></script>
+<script src="assets/js/main.js?v=5" defer></script>
 </body>
 </html>
