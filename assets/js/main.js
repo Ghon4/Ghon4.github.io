@@ -39,19 +39,41 @@
     });
   }
 
-  // Hero entrance (presence, once)
+  // Hero entrance (presence, once) — gated until intro finishes
   var heroEnters = document.querySelectorAll('.hero-enter');
+  var heroShown = false;
   function showHeroEnters() {
+    if (heroShown) return;
+    heroShown = true;
     heroEnters.forEach(function (el) { el.classList.add('is-in'); });
   }
-  if (!heroEnters.length) {
-    /* no-op */
-  } else if (reduceMotion || revealAll) {
+
+  // Big intro overlay
+  var intro = document.getElementById('site-intro');
+  function finishIntro() {
+    root.classList.remove('intro-pending', 'intro-playing', 'intro-exit');
+    root.classList.add('intro-done');
     showHeroEnters();
+  }
+
+  function playIntro() {
+    if (!intro || reduceMotion || revealAll || root.classList.contains('intro-done')) {
+      finishIntro();
+      return;
+    }
+    root.classList.remove('intro-done');
+    root.classList.add('intro-pending', 'intro-playing');
+    // Hold the brand beat, then exit
+    window.setTimeout(function () {
+      root.classList.add('intro-exit');
+      window.setTimeout(finishIntro, 820);
+    }, 2100);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', playIntro);
   } else {
-    requestAnimationFrame(function () {
-      requestAnimationFrame(showHeroEnters);
-    });
+    playIntro();
   }
 
   // Mobile menu
@@ -92,7 +114,7 @@
   if (reduceMotion || revealAll || !('IntersectionObserver' in window)) {
     revealEls.forEach(revealNow);
   } else {
-    ['.featured', '.projects', '.skills', '.edu-grid', '.timeline', '.stats', '.stats-strip'].forEach(applyStagger);
+    ['.work-list', '.skills', '.edu-grid', '.timeline', '.stats', '.stats-strip'].forEach(applyStagger);
 
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
@@ -154,21 +176,22 @@
     if (active) moveIndicator(active);
   });
 
-  // Project filters — keep show/hide in sync with reveal classes
+  // Project filters — work-list rows
   var filters = document.querySelectorAll('.filter');
   filters.forEach(function (btn) {
     btn.addEventListener('click', function () {
       var f = btn.getAttribute('data-filter');
       filters.forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
-      document.querySelectorAll('#projects .card').forEach(function (card) {
-        var cats = (card.getAttribute('data-cats') || '').split(' ');
+      document.querySelectorAll('#projects .work-item').forEach(function (item) {
+        var cats = (item.getAttribute('data-cats') || '').split(' ').filter(Boolean);
         var show = f === 'all' || cats.indexOf(f) !== -1;
-        var li = card.parentElement;
-        li.hidden = !show;
-        if (show && li.classList.contains('reveal') && !li.classList.contains('in')) {
-          var rect = li.getBoundingClientRect();
+        // Empty cats (JKS) only show on "all"
+        if (f !== 'all' && !cats.length) show = false;
+        item.hidden = !show;
+        if (show && item.classList.contains('reveal') && !item.classList.contains('in')) {
+          var rect = item.getBoundingClientRect();
           var inView = rect.top < (window.innerHeight || 0) && rect.bottom > 0;
-          if (inView || reduceMotion || revealAll) revealNow(li);
+          if (inView || reduceMotion || revealAll) revealNow(item);
         }
       });
     });
@@ -287,6 +310,142 @@
         btn.style.transform = '';
       });
     });
+  }
+
+  // ===== Work list: expand + cursor-follow float preview =====
+  var workStage = document.querySelector('.work-stage');
+  var workList = document.getElementById('work-list');
+  var workFloat = document.getElementById('work-float');
+  var workFloatImg = workFloat ? workFloat.querySelector('img') : null;
+
+  if (workStage && !finePointer) {
+    workStage.classList.add('is-touch');
+  }
+
+  function closeAllWork(except) {
+    document.querySelectorAll('.work-item.is-open').forEach(function (item) {
+      if (except && item === except) return;
+      item.classList.remove('is-open');
+      var btn = item.querySelector('.work-row');
+      var panel = item.querySelector('.work-panel');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+      if (panel) panel.hidden = true;
+    });
+  }
+
+  if (workList) {
+    workList.querySelectorAll('.work-row').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item = btn.closest('.work-item');
+        if (!item) return;
+        var open = !item.classList.contains('is-open');
+        closeAllWork(open ? item : null);
+        item.classList.toggle('is-open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        var panel = item.querySelector('.work-panel');
+        if (panel) panel.hidden = !open;
+      });
+    });
+  }
+
+  // Floating preview (desktop fine pointer only)
+  if (workStage && workList && workFloat && workFloatImg && finePointer) {
+    var targetX = 0;
+    var targetY = 0;
+    var curX = 0;
+    var curY = 0;
+    var floatOn = false;
+    var rafId = 0;
+    var LERP = 0.16;
+
+    function setFloatPos(x, y) {
+      var pad = 24;
+      var fw = workFloat.offsetWidth || 240;
+      var fh = workFloat.offsetHeight || 360;
+      var maxX = (window.innerWidth || 0) - fw / 2 - pad;
+      var minX = fw / 2 + pad;
+      var maxY = (window.innerHeight || 0) - fh / 2 - pad;
+      var minY = fh / 2 + pad;
+      if (x > maxX) x = maxX;
+      if (x < minX) x = minX;
+      if (y > maxY) y = maxY;
+      if (y < minY) y = minY;
+      workFloat.style.left = x + 'px';
+      workFloat.style.top = y + 'px';
+    }
+
+    function tick() {
+      curX += (targetX - curX) * LERP;
+      curY += (targetY - curY) * LERP;
+      setFloatPos(curX, curY);
+      if (floatOn || Math.abs(targetX - curX) > 0.4 || Math.abs(targetY - curY) > 0.4) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        rafId = 0;
+        setFloatPos(targetX, targetY);
+      }
+    }
+
+    function ensureTick() {
+      if (!rafId) rafId = requestAnimationFrame(tick);
+    }
+
+    function showFloat(item, e) {
+      var shot = item.getAttribute('data-shot');
+      if (!shot) {
+        hideFloat();
+        return;
+      }
+      if (workFloatImg.getAttribute('src') !== shot) {
+        workFloatImg.setAttribute('src', shot);
+      }
+      workStage.classList.add('is-hovering');
+      document.querySelectorAll('.work-item.is-active').forEach(function (el) {
+        el.classList.remove('is-active');
+      });
+      item.classList.add('is-active');
+      // Bias preview slightly right/up so the title stays readable
+      targetX = e.clientX + 72;
+      targetY = e.clientY - 12;
+      if (!floatOn) {
+        curX = targetX;
+        curY = targetY;
+        setFloatPos(curX, curY);
+        floatOn = true;
+        workFloat.classList.add('is-on');
+      }
+      ensureTick();
+    }
+
+    function hideFloat() {
+      floatOn = false;
+      workFloat.classList.remove('is-on');
+      workStage.classList.remove('is-hovering');
+      document.querySelectorAll('.work-item.is-active').forEach(function (el) {
+        el.classList.remove('is-active');
+      });
+    }
+
+    workList.querySelectorAll('.work-item').forEach(function (item) {
+      var row = item.querySelector('.work-row');
+      if (!row) return;
+      row.addEventListener('mouseenter', function (e) {
+        showFloat(item, e);
+      });
+      row.addEventListener('mousemove', function (e) {
+        if (!item.getAttribute('data-shot')) return;
+        targetX = e.clientX + 72;
+        targetY = e.clientY - 12;
+        ensureTick();
+      });
+      row.addEventListener('mouseleave', function (e) {
+        var to = e.relatedTarget;
+        if (to && workList.contains(to)) return;
+        hideFloat();
+      });
+    });
+
+    workList.addEventListener('mouseleave', hideFloat);
   }
 
   var y = document.getElementById('year');
