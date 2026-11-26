@@ -1,4 +1,4 @@
-/* Mohamed Ghoniem — portfolio. Plain CSS, mobile first. Moss glass refresh. */
+/* Mohamed Ghoniem — portfolio. Plain CSS, mobile first. */
 :root{
   --bg:#07130d; --bg-2:#0c1c14; --surface:#10241a; --surface-2:#152e21;
   --border:#22442f; --text:#e7f5ec; --muted:#a3c2ae; --accent:#4ade80; --accent-2:#2dd4bf;
@@ -716,7 +716,7 @@ body{overflow-x:clip}
 
 .stats-strip strong,.stat strong{font-variant-numeric:tabular-nums}
 
-/* ===== v4 moss glass — entrance, orbs, mobile blur budget ===== */
+/* ===== Entrance, orbs, mobile blur budget ===== */
 .js .hero-enter{
   opacity:0;
   transform:translateY(22px);
@@ -825,7 +825,7 @@ body{overflow-x:clip}
   .stats-strip{background:var(--border)}
 }
 
-/* ===== v8 — Motionsites intro (blur-rise + mask lines) + Dennis work list ===== */
+/* ===== Intro overlay (blur-rise + mask lines) + work list hover ===== */
 html.intro-pending,html.intro-pending body{overflow:hidden}
 .site-intro{
   position:fixed;inset:0;z-index:200;display:grid;place-items:center;

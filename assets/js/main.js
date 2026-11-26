@@ -63,7 +63,7 @@
     }
     root.classList.remove('intro-done');
     root.classList.add('intro-pending', 'intro-playing');
-    // Motionsites blur-rise / mask-line choreography (~1.5s land) + hold, then wipe
+    // Intro blur-rise / mask-line choreography (~1.5s land) + hold, then wipe
     window.setTimeout(function () {
       root.classList.add('intro-exit');
       window.setTimeout(finishIntro, 920);
@@ -312,7 +312,7 @@
     });
   }
 
-  // ===== Work list: designed float + View circle (Dennis) + case links =====
+  // ===== Work list: designed float + View circle + case links =====
   var workStage = document.querySelector('.work-stage');
   var workList = document.getElementById('work-list');
   var workFloat = document.getElementById('work-float');
@@ -333,7 +333,7 @@
     var floatOn = false;
     var rafId = 0;
     var LERP_FLOAT = 0.11; // slower lag on designed card
-    var LERP_VIEW = 0.22;  // snappier View circle (Dennis feel)
+    var LERP_VIEW = 0.22;  // snappier View circle
 
     function clampPair(x, y, el, pad) {
       var fw = el.offsetWidth || 120;
