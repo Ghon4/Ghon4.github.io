@@ -439,9 +439,8 @@
       });
     }
 
-    // Only treat other work rows as staying "over" the list.
-    // Float/View must not keep tracking the cursor — once they follow
-    // their own mousemove they stick under the pointer forever.
+    // Float/View use pointer-events:none, so they never become relatedTarget.
+    // Only other work rows should keep the preview alive while moving.
     function overWorkRow(to) {
       return !!(to && to.closest && to.closest('#work-list .work-row'));
     }
@@ -460,28 +459,11 @@
         if (overWorkRow(e.relatedTarget)) return;
         hideFloat();
       });
-      row.addEventListener('blur', function () {
-        hideFloat();
-      });
-    });
-
-    // Allow clicking Float/View without them chasing the cursor.
-    [workFloat, workView].forEach(function (el) {
-      el.addEventListener('mouseleave', function (e) {
-        if (overWorkRow(e.relatedTarget)) return;
-        hideFloat();
-      });
-      el.addEventListener('blur', function () {
-        hideFloat();
-      });
+      row.addEventListener('blur', hideFloat);
     });
 
     workList.addEventListener('mouseleave', function (e) {
       if (overWorkRow(e.relatedTarget)) return;
-      // Leaving the list onto the float/view is fine for a click;
-      // leaving anywhere else (or null) must fully reset.
-      var to = e.relatedTarget;
-      if (to && (workFloat.contains(to) || workView.contains(to))) return;
       hideFloat();
     });
 
