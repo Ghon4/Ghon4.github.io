@@ -421,6 +421,10 @@
 
     function hideFloat() {
       floatOn = false;
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = 0;
+      }
       workFloat.classList.remove('is-on');
       workView.classList.remove('is-on');
       workFloat.setAttribute('aria-hidden', 'true');
@@ -435,8 +439,10 @@
       });
     }
 
-    function overPreview(to) {
-      return to && (workList.contains(to) || workFloat.contains(to) || workView.contains(to));
+    // Float/View use pointer-events:none, so they never become relatedTarget.
+    // Only other work rows should keep the preview alive while moving.
+    function overWorkRow(to) {
+      return !!(to && to.closest && to.closest('#work-list .work-row'));
     }
 
     workList.querySelectorAll('.work-item').forEach(function (item) {
@@ -450,27 +456,19 @@
         ensureTick();
       });
       row.addEventListener('mouseleave', function (e) {
-        if (overPreview(e.relatedTarget)) return;
+        if (overWorkRow(e.relatedTarget)) return;
         hideFloat();
       });
-    });
-
-    [workFloat, workView].forEach(function (el) {
-      el.addEventListener('mousemove', function (e) {
-        targetX = e.clientX;
-        targetY = e.clientY;
-        ensureTick();
-      });
-      el.addEventListener('mouseleave', function (e) {
-        if (overPreview(e.relatedTarget)) return;
-        hideFloat();
-      });
+      row.addEventListener('blur', hideFloat);
     });
 
     workList.addEventListener('mouseleave', function (e) {
-      if (overPreview(e.relatedTarget)) return;
+      if (overWorkRow(e.relatedTarget)) return;
       hideFloat();
     });
+
+    window.addEventListener('blur', hideFloat);
+    document.addEventListener('mouseleave', hideFloat);
   }
 
   // Case pages: next-project wash only (imagery reuses home .hero-shots float/tilt/enter)

@@ -992,7 +992,8 @@ html.intro-done .site-intro{display:none}
 }
 .work-float.is-on{
   opacity:1;visibility:visible;transform:translate3d(-50%,-50%,0) scale(1);
-  pointer-events:auto;cursor:pointer;
+  /* Stay non-interactive so the float never steals hover from the row
+     (pointer-events:auto + cursor tracking caused a sticky follow). */
 }
 .work-float-card{
   display:block;width:100%;aspect-ratio:4/5;border-radius:22px;overflow:hidden;
@@ -1015,7 +1016,6 @@ html.intro-done .site-intro{display:none}
 }
 .work-view.is-on{
   opacity:1;visibility:visible;transform:translate3d(-50%,-50%,0) scale(1);
-  pointer-events:auto;cursor:pointer;
 }
 .work-view:hover{filter:brightness(1.05)}
 :root[data-theme="light"] .work-float-card{box-shadow:0 24px 50px rgba(15,36,24,.22)}
