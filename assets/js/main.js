@@ -421,6 +421,10 @@
 
     function hideFloat() {
       floatOn = false;
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = 0;
+      }
       workFloat.classList.remove('is-on');
       workView.classList.remove('is-on');
       workFloat.setAttribute('aria-hidden', 'true');
@@ -435,8 +439,11 @@
       });
     }
 
-    function overPreview(to) {
-      return to && (workList.contains(to) || workFloat.contains(to) || workView.contains(to));
+    // Only treat other work rows as staying "over" the list.
+    // Float/View must not keep tracking the cursor — once they follow
+    // their own mousemove they stick under the pointer forever.
+    function overWorkRow(to) {
+      return !!(to && to.closest && to.closest('#work-list .work-row'));
     }
 
     workList.querySelectorAll('.work-item').forEach(function (item) {
@@ -450,27 +457,36 @@
         ensureTick();
       });
       row.addEventListener('mouseleave', function (e) {
-        if (overPreview(e.relatedTarget)) return;
+        if (overWorkRow(e.relatedTarget)) return;
+        hideFloat();
+      });
+      row.addEventListener('blur', function () {
         hideFloat();
       });
     });
 
+    // Allow clicking Float/View without them chasing the cursor.
     [workFloat, workView].forEach(function (el) {
-      el.addEventListener('mousemove', function (e) {
-        targetX = e.clientX;
-        targetY = e.clientY;
-        ensureTick();
-      });
       el.addEventListener('mouseleave', function (e) {
-        if (overPreview(e.relatedTarget)) return;
+        if (overWorkRow(e.relatedTarget)) return;
+        hideFloat();
+      });
+      el.addEventListener('blur', function () {
         hideFloat();
       });
     });
 
     workList.addEventListener('mouseleave', function (e) {
-      if (overPreview(e.relatedTarget)) return;
+      if (overWorkRow(e.relatedTarget)) return;
+      // Leaving the list onto the float/view is fine for a click;
+      // leaving anywhere else (or null) must fully reset.
+      var to = e.relatedTarget;
+      if (to && (workFloat.contains(to) || workView.contains(to))) return;
       hideFloat();
     });
+
+    window.addEventListener('blur', hideFloat);
+    document.addEventListener('mouseleave', hideFloat);
   }
 
   // Case pages: next-project wash only (imagery reuses home .hero-shots float/tilt/enter)
